@@ -1,0 +1,20 @@
+{
+  "tags": [
+    {
+      "label": "tag2",
+      "color": "blue",
+      "id": 2
+    },
+    {
+      "label": "tag1",
+      "color": "red",
+      "id": 3
+    },
+    {
+      "label": "tag3",
+      "color": "green",
+      "id": 4
+    }
+  ]
+
+}

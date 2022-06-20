@@ -1,0 +1,62 @@
+.MainCard {
+    display: flex;
+    // flex-direction: row;
+    position: relative;
+    border: .0625rem solid #4164b1;
+    // border-radius: 30px;
+    text-align: left;
+    justify-content: left;
+    border-style: double;
+    margin: 5px;
+    height: 30vh;
+    width: 20vw;
+    // width: 2vw;
+
+  
+
+
+    &:hover {
+        transform: translateY(-1rem)
+    }
+
+    .imgMainCard {
+        position: absolute;
+        box-sizing: border-box;
+        width: 100%;
+        height: 70%;
+
+        top: 0px;
+
+
+    }
+
+    .imgMaintxt {
+
+        padding: 1%;
+        // display: flex;
+        flex-direction: column;
+font-size:0.9rem;
+        font-weight: bold;
+        width: 100%;
+        position: absolute;
+        bottom: 0px;
+        // position: relative;
+        // height: 50%;
+
+
+        .formControl{
+            height: 5vh;
+         
+        }
+    }
+
+
+}
+
+a,
+a:hover,
+a:focus,
+a:active {
+    text-decoration: none;
+    color: inherit;
+}
