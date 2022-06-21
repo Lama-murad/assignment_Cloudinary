@@ -2,8 +2,9 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { useEffect, useState } from "react";
-import Image from './images/images'
-import Tags from './tags/tags';
+import Tags from './view/pages/tags/tags';
+import Image from './view/pages/images/images';
+import ImageTags from './view/pages/imagesTags/imagesTags';
 
 
 function App() {
@@ -18,6 +19,8 @@ function App() {
         <Tags />
 
         <Image />
+
+        <ImageTags />
    
       </header>
     </div>

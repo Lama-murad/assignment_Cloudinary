@@ -3,18 +3,27 @@
     {
       "label": "tag2",
       "color": "blue",
-      "id": 2
+      "id": 2,
+      "images": []
     },
     {
       "label": "tag1",
       "color": "red",
-      "id": 3
+      "id": 3,
+      "images": [
+        "https://picsum.photos/id/0/5616/3744"
+      ]
     },
     {
       "label": "tag3",
       "color": "green",
-      "id": 4
+      "id": 4,
+      "images": [
+        "https://picsum.photos/id/0/5616/3744"
+      ]
     }
+  ],
+  "imagesTags": [
+    {}
   ]
-
 }
