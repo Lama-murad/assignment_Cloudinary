@@ -57,7 +57,9 @@ function Card(prop: cardProp) {
           settagName(
             // On autofill we get a stringified value.
             typeof value === 'string' ? value.split(',') : value,
+          
           );
+          console.log({tagName});
         };
 
         useEffect(()=>{

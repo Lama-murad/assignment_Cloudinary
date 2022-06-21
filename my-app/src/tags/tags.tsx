@@ -97,8 +97,10 @@ function Tags(){
                                 <tbody>
 
                                     {data.map((info: any, index) => {
+                                            // const backGColor={info.color};
                                         return (
-                                            <tr key={index}>
+                                            //<a style={{backgroundColor: bgColors.Yellow}}>yellow</a>
+                                            <tr key={index} style={{backgroundColor: info.color}}>
                                                 <td>{info.label}</td>
                                                 <td>{info.color} {info.id}</td>
                                                 <td key={info.id}>
