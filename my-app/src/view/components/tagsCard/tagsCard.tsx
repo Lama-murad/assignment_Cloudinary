@@ -17,22 +17,24 @@ interface cardProp {
     tag:{
         label:string;
         color:string;
+        images:[];
         
         }
-img:{
-    author:string;
-    url:string;
+// img:{
+//     author:string;
+//     url:string;
 
-}
+// }
 }
 
-function ImgCard(prop: cardProp) {
-    const [tags,setTags]=useState([{label:"",color:""}]);
+function TagsCard(prop: cardProp) {
+    const [tags,setTags]=useState([{label:"",color:"",images:[]}]);
     const [tagsImages,setTagsImages]=useState([{author:"",url:""}]);
 
 
     const getData=()=>{
         axios.get('http://localhost:3004/tags').then(({data})=>setTags(data));
+        axios.get('http://localhost:3004/tags').then(({data})=>console.log(data));
         axios.get('http://localhost:3004/imagesTags').then(({data})=>setTagsImages(data))
   
       //   setData(data);
@@ -47,11 +49,25 @@ function ImgCard(prop: cardProp) {
     return (
         <div className="MainCard1">
           <p style={{backgroundColor: prop.tag.color}}>{prop.tag.label}</p>
+          <p>{prop.tag.images}</p>
+          {/* <p>aaaa</p> */}
   
             <div className='imgMaintxt1'>
             {/* {tags.map((t) => (
               <img className='imgMainCard' src={prop.img.url}></img>
           ))} */}
+
+{prop.tag.images.length?  (
+    // array exists and is not empty:
+    <p>
+             {prop.tag.images.map((t) => (
+              <img className='imgMainCard1' src={t}></img>
+          ))}
+          </p>
+            ):(
+              <p></p>
+            )
+            }
      
 
         </div>
@@ -61,4 +77,4 @@ function ImgCard(prop: cardProp) {
 
     )
 }
-export default ImgCard;
+export default TagsCard;

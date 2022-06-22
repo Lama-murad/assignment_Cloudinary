@@ -1,11 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import ImgCard from "../../components/tagsCard/tagsCard";
+import TagsCard from "../../components/tagsCard/tagsCard";
+import './imageTags.scss'
 
 
 function ImageTags(){
     const [img, setImg] = useState("");
-    const [data,setData]=useState([{label:"",color:"",imgURL:""}]);
+    const [data,setData]=useState([{label:"",color:"",images:[]}]);
 
     const getData=()=>{
         axios.get('http://localhost:3004/tags').then(({data})=>setData(data));
@@ -25,9 +26,10 @@ function ImageTags(){
     
        return (
           // <p style={{backgroundColor: t.color}}>{t.label}</p>
-        <ImgCard key={index} tag={t} 
+        <TagsCard key={index} tag={t} 
                    
-                   img={t.images} ></ImgCard>
+                //    prop.tag.img={t.images} 
+                ></TagsCard>
        )
                 })}
          </div>

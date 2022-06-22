@@ -1,5 +1,5 @@
 .MainCard1 {
-    display: flex;
+    // display: flex;
     // flex-direction: row;
     position: relative;
     border: .0625rem solid #4164b1;
@@ -20,10 +20,11 @@
     }
 
     .imgMainCard1 {
-        position: absolute;
-        box-sizing: border-box;
-        width: 100%;
-        height: 70%;
+        position: relative;
+        // box-sizing: border-box;
+        height: 5vh;
+        width: 5vw;
+        // height: 70%;
 
         top: 0px;
 
@@ -34,7 +35,7 @@
 
         padding: 1%;
         // display: flex;
-        flex-direction: column;
+        // flex-direction: row;
 font-size:0.9rem;
         font-weight: bold;
         width: 100%;
