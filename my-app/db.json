@@ -1,0 +1,54 @@
+{
+  "tags": [
+    {
+      "label": "tag1",
+      "color": "#99f782",
+      "images": [
+        "https://picsum.photos/id/1/5616/3744"
+      ],
+      "id": 1
+    },
+    {
+      "label": "tag2",
+      "color": "#9f3129",
+      "images": [
+        "https://picsum.photos/id/10/2500/1667",
+        "https://picsum.photos/id/100/2500/1656"
+      ],
+      "id": 2
+    },
+    {
+      "label": "tag3",
+      "color": "#64a428",
+      "images": [],
+      "id": 3
+    }
+  ],
+  "taggedImages": [],
+  "images": [
+    {
+      "author": "Alejandro Escamilla",
+      "url": "https://picsum.photos/id/0/5616/3744",
+      "tagged": false,
+      "id": 1
+    },
+    {
+      "author": "Alejandro Escamilla",
+      "url": "https://picsum.photos/id/1/5616/3744",
+      "tagged": false,
+      "id": 2
+    },
+    {
+      "author": "Paul Jarvis",
+      "url": "https://picsum.photos/id/10/2500/1667",
+      "tagged": false,
+      "id": 3
+    },
+    {
+      "author": "Tina Rataj",
+      "url": "https://picsum.photos/id/100/2500/1656",
+      "tagged": false,
+      "id": 4
+    }
+  ]
+}

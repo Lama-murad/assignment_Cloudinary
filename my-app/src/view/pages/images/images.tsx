@@ -30,19 +30,19 @@ function Image() {
 
   function saveImages(images:any)
   {
-    // {
-    //   images.map((img: any, index:any) => {
-    //     axios.post('http://localhost:4000/images',{"author":img.author,"url":img.download_url,"tagged":false}).
-    //     then((response)=>console.log(response));
-    //   })
-    // }
-     {
-        images.map((img: any, index:any) => {
-console.log(img)
-        })
-      }
-    axios.post('http://localhost:4000/images',{img}).
-    then((response)=>console.log(response));
+    {
+      images.map((img: any, index:any) => {
+        axios.post('http://localhost:4000/images',{"author":img.author,"url":img.download_url,"tagged":false}).
+        then((response)=>console.log(response));
+      })
+    }
+    //  {
+//         images.map((img: any, index:any) => {
+// console.log(img)
+//         })
+//       }
+//     axios.post('http://localhost:4000/images',{img}).
+//     then((response)=>console.log(response));
 
 
   }
@@ -57,7 +57,7 @@ console.log(img)
       // then((response)=>console.log(response));
     });
 
-    saveImages(apiImages)
+    // saveImages(apiImages)
 
   }, []);
 
