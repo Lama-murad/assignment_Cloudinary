@@ -12,6 +12,11 @@
     width: 20vw;
     // width: 2vw;
 
+    p{
+        position: relative;
+        top: 0%;
+    }
+
   
 
 
@@ -39,16 +44,14 @@
 font-size:0.9rem;
         font-weight: bold;
         width: 100%;
-        position: absolute;
-        bottom: 0px;
+        position: relative;
+        top: 0%;
+        // bottom: 0px;
         // position: relative;
         // height: 50%;
 
 
-        .formControl{
-            height: 5vh;
-         
-        }
+    
     }
 
  

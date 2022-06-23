@@ -4,14 +4,12 @@
     grid-template-rows:   auto auto;
     grid-template-columns: repeat(3,auto);
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    // padding: 50px;
     margin: auto;
     text-align: center;
     justify-content: center;
-    margin-left: 40%;
-    width: 70%;
-    // top: 0%;
-    // height: 90vh;
+    margin-left: 25vw;
+    max-width: 70vw;
+    height: 50vh;
 }
 
 

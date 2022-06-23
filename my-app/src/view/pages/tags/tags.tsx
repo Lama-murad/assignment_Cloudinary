@@ -8,120 +8,127 @@ import EditIcon from '@mui/icons-material/Edit';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import { AiFillDelete } from "react-icons/ai";
 
-function Tags(){
-    const [list, updateList] = useState([{label:"",color:""}]);
+function Tags() {
     const [name, setName] = useState('');
-    const [data,setData]=useState([{label:"",color:""}]);
+    const [data, setData] = useState([{ label: "", color: "", images: [] }]);
     const [edit, setEdit] = useState(false);
 
-    const getData=()=>{
-          axios.get('http://localhost:3004/tags').then(({data})=>setData(data));
+    const getData = () => {
+        axios.get('http://localhost:4000/tags').then(({ data }) => setData(data));
         //   setData(data);
-      }
-     
+    }
 
-    const handleRemoveItem = (id:any,e:any) => {
+
+    const handleRemoveItem = (id: any, e: any) => {
         const label = e.target;
         //  updateList(data.filter(item => item.label !== label));
         console.log(e);
-         axios.delete(`http://localhost:3004/tags/${id}`)
-         .then(res => {  
-            console.log(res);  
-            console.log(res.data);  
-        
-            // const tags = data.filter(item => item.id !== id);  
-            // setData({ tags });  
-          })  
+        axios.delete(`http://localhost:4000/tags/${id}`)
+            .then(res => {
+                console.log(res);
+                console.log(res.data);
+                alert("tag removed successfully");
+
+                // const tags = data.filter(item => item.id !== id);  
+                // setData({ tags });  
+            })
         //  .then(({data})=>console.log(data));
-       };
+    };
 
-       function handleEdit() {
+    function handleEdit() {
         setEdit(!edit);
-      }
+    }
 
-       const handleEditItem = (id:any,e:any) => {
-        e.preventDefault();
-        const label = e.target.getAttribute("label")
-      axios.patch(`http://localhost:3004/tags/${id}`,{ author:'best ever author'}).then(({data})=>console.log(data));
-       };
+    const handleEditItem = (id:any,e:any) => {
+        // e.preventDefault();
+        const label = e.target[0].value;
+
+        console.log(label, "aaaa" )
+        axios.patch(`http://localhost:4000/tags/${id}`, { label: label }).then(({ data }) =>{
+            console.log(data)
+            alert("tag's name edited successfully")
+        } );
+
+       
+    };
 
 
-       function handleChange(event:any) {
+    function handleChange(event: any) {
         setName(event.target.value);
         // track input field's state
-      }
-    
-      function handleAdd(ev:any) {
-        ev.preventDefault();
+    }
+
+    function handleAdd(ev: any) {
+        // ev.preventDefault();
         const form = ev.target;
-        console.log({form})
-        // name: form[0].value, level: form[1].value
-        const newList = data.concat({label:form[0].value , color:form[1].value});
+        if(form[0].value){
+        console.log({ form })
+        var randomColor = Math.floor(Math.random() * 16777215).toString(16);
+        axios.post('http://localhost:4000/tags', { 'label': form[0].value, 'color': "#" + randomColor, "images": [] }).
+            then((response) => console.log(response));
+        alert("tag added successfully");
+        }
+        else{
+            alert("no data!! try again");
+        }
+    }
 
-        console.log(newList)
-        setData(newList);
-      
-          axios.post('http://localhost:3004/tags',{'label':form[0].value, 'color':form[1].value}).
-          then((response)=>console.log(response));
-  alert("tag added successfully");
-      }
-
-      useEffect(()=>{
+    useEffect(() => {
         getData()
-      },[])
+    }, [])
 
-    return(
+    return (
         <div className="tag">
-{/* {edit? ( */}
-             {/* <div className="addTag"> */}
-                    <form className='formAddOffer' onSubmit={handleAdd}>
-                        <input type="text" name="label" placeholder='insert tag"s label' />
-                        <input type="text" name="color" placeholder='insert tags"s color' />
-                        <Button className='addbtn' type="submit">Add</Button>
-                    </form>
+            <form className='formAddTag' onSubmit={handleAdd}>
+                <input type="text" name="label" placeholder='insert tag"s label' />
+                <Button className='addbtn' type="submit">Add</Button>
+            </form>
+            <div className="table">
+                <table className="table-striped">
+                    <thead>
+                        <tr>
+                            <th>tag's label</th>
 
-                {/* </div> */}
-                <div className="tagsTable">
-                            <table className="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>tag's label</th>
-                                        <th>tag's color</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {data.map((info: any, index) => {
+                            return (
+                                <tr key={info.id} style={{ backgroundColor: info.color }}>
+                                    {edit ? ( 
+                                     <><td> 
+                                         <form onSubmit={(e) => { handleEditItem(info.id,e); }} id={info.id}>
+                                            <input type="text" placeholder="edit tag's name" name="name" />
+                                <button  type="submit">Update</button>
+                                </form></td></>
+                                
+                                 
+                                    ) : (
+                                        <><td>{info.label}</td><td key={info.id}>
+                                        <ButtonGroup className='grpbtn' variant="contained" aria-label="outlined small button group">
 
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                    {data.map((info: any, index) => {
-                                            // const backGColor={info.color};
-                                        return (
-                                            //<a style={{backgroundColor: bgColors.Yellow}}>yellow</a>
-                                            <tr key={index} style={{backgroundColor: info.color}}>
-                                                <td>{info.label}</td>
-                                                <td>{info.color} {info.id}</td>
-                                                <td key={info.id}>
-                                                    <ButtonGroup className='grpbtn' variant="contained" aria-label="outlined small button group">
-                                                        {/* <AiFillDelete /> */}
-                                                        <DeleteOutlinedIcon onClick={(e) => { handleRemoveItem(info.id, e); } } />
-                                                        /
-                                                        <EditIcon  onClick={(e) => { handleEditItem(info.id, e); }} />
-                                                    </ButtonGroup>
+                                            <DeleteOutlinedIcon onClick={(e) => { handleRemoveItem(info.id, e); } } />
+                                            /
+                                            <EditIcon onClick={handleEdit} />
+                                        </ButtonGroup>
 
 
-                                                </td>
-                                            </tr>
-                                        );
-                                    }
-
+                                    </td></>
+                                
                                     )}
+                                </tr>
+                            );
+                        }
 
-                                </tbody>
-                            </table>
+                        )}
+
+                    </tbody>
+                </table>
 
 
-                    </div>
+            </div>
 
-        {/* )} */}
+            {/* )} */}
         </div>
     )
 
