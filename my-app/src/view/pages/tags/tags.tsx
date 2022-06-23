@@ -84,10 +84,6 @@ function Tags(){
                 <div className="tagsTable">
                             <table className="table table-striped">
                                 <thead>
-                                    {/* <tr className="mainTH">
-                                        <th >available tags</th>
-
-                                    </tr> */}
                                     <tr>
                                         <th>tag's label</th>
                                         <th>tag's color</th>

@@ -1,12 +1,6 @@
 {
   "tags": [
     {
-      "label": "tag2",
-      "color": "blue",
-      "id": 2,
-      "images": []
-    },
-    {
       "label": "tag1",
       "color": "red",
       "id": 3,
