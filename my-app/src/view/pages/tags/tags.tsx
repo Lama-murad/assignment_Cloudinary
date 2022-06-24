@@ -3,14 +3,18 @@ import { useState } from "react";
 import './tags.scss';
 import Button from '@mui/material/Button';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
+import DoneIcon from '@mui/icons-material/Done';
 import axios from "axios";
 import EditIcon from '@mui/icons-material/Edit';
 import ButtonGroup from '@mui/material/ButtonGroup';
+import CloseIcon from '@mui/icons-material/Close';
+import { TurnLeftTwoTone } from "@mui/icons-material";
 
 function Tags() {
     const [name, setName] = useState('');
     const [data, setData] = useState([{ label: "", color: "", images: [] }]);
     const [edit, setEdit] = useState(true);
+    const [id, setId] = useState(0);
 
     const getData = () => {
         axios.get('http://localhost:3010/tags').then(({ data }) => setData(data));
@@ -27,7 +31,7 @@ function Tags() {
                 console.log(res);
                 console.log(res.data);
                 alert("tag removed successfully");
-
+                window.location.reload();
                 // const tags = data.filter(item => item.id !== id);  
                 // setData({ tags });  
             })
@@ -59,6 +63,7 @@ if(label){
         setName(event.target.value);
         // track input field's state
     }
+  
 
     function handleAdd(ev: any) {
         // ev.preventDefault();
@@ -88,21 +93,27 @@ if(label){
             </form>
             <div className="tags">
                 <h3>available tags</h3>
+                <p>     <EditIcon onClick={handleEdit} />
+                <CloseIcon onClick={handleEdit}></CloseIcon></p>
+           
                 {data.map((info: any, index: number) => {
+                     let tagId=info.id;
+                    // console.log(info.id,"tagidddd");
                     return (
                         <div key={info.id} className="info" style={{ backgroundColor: info.color }}>
-                            {edit ? (
+                             {/* && checkIfSame(tagId,id) */}
+                         {edit?  (
                                 <><p>{info.label}  </p>
                                     <ButtonGroup className='grpbtn' variant="contained" aria-label="outlined small button group">
 
                                         <DeleteOutlinedIcon onClick={(e) => { handleRemoveItem(info.id, e); }} />
-                                        /
-                                        <EditIcon onClick={handleEdit} />
+                                        
+                                   
                                     </ButtonGroup></>
                             ) : (
-                                <form className="info" onSubmit={(e) => { handleEditItem(info.id, e); }} id={info.id}>
+                                <form className="info" onSubmit={(e) => { handleEditItem(info.id,e); }} id={info.id}>
                                     <input type="text" className="input" placeholder="edit tag's name" name="name" />
-                                    <button className="btn" type="submit">Edit</button>
+                                    <button className="btn" type="submit"><DoneIcon /></button>
                                 </form>
                             )}
 
@@ -119,3 +130,11 @@ export default Tags;
 
 
 
+
+
+
+
+function  checkIfSame(id1: any, id2: number) {
+    if(id1===id2) return true;
+    else return false;
+}

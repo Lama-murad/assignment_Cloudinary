@@ -9,7 +9,9 @@
     {
       "label": "work",
       "color": "#e26f7d",
-      "images": [],
+      "images": [
+        "https://picsum.photos/id/0/5616/3744"
+      ],
       "id": 7
     },
     {
@@ -48,7 +50,8 @@
       "label": "nature",
       "color": "#fe1015",
       "images": [
-        "https://picsum.photos/id/10/2500/1667"
+        "https://picsum.photos/id/10/2500/1667",
+        "https://picsum.photos/id/1006/3000/2000"
       ],
       "id": 12
     }

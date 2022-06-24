@@ -39,6 +39,7 @@ function Card(prop: cardProp) {
   const [tagName, settagName] = React.useState<string[]>([]);
   const [tagData, setTagData] = useState({ label: "", id: "", images: [] });
   const [tagImages, setTagImages] = useState<string[]>([]);
+
   const getData = () => {
     axios.get('http://localhost:3010/tags').then(({ data }) => setTags(data));
 
@@ -72,12 +73,13 @@ function Card(prop: cardProp) {
             setTagImages([...tagImages, img.url])
             arr = [...tagImages, img.url]
             console.log(response.data.images, "hhhhhhhh", arr)
-
             axios.patch(`http://localhost:3010/tags/${t}`, { "images": [...response.data.images, img.url] }).
               then((response) => console.log(response));
 
           });
         alert("tag added successfully");
+        window.location.reload();
+
 
       })
     }

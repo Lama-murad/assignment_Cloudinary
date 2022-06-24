@@ -32,12 +32,17 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            padding: 1%;
+            margin: 1%;
             
             .input{
-                width:8vw;
+                width:7vw;
             }
             .btn{
-                width: 4vw;
+                width: 2vw;
+                height: 2vw;
+                background-color: transparent;
+                border-color: transparent;
             }
             p{
             

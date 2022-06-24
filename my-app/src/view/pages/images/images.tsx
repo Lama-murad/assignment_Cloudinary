@@ -16,7 +16,7 @@ function Image() {
 
   function getAPI() {
     return new Promise((resolve, reject) => {
-      fetch(`https://picsum.photos/v2/list?limit=18`)
+      fetch(`https://picsum.photos/v2/list?limit=12`)
         .then((response) => response.json())
         .then((json) => {
           console.log(json)
