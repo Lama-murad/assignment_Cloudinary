@@ -16,7 +16,7 @@ function Image() {
 
   function getAPI() {
     return new Promise((resolve, reject) => {
-      fetch(`https://picsum.photos/v2/list?limit=4`)
+      fetch(`https://picsum.photos/v2/list?limit=18`)
         .then((response) => response.json())
         .then((json) => {
           console.log(json)
@@ -28,21 +28,13 @@ function Image() {
     });
   }
 
-  function saveImages(images:any)
-  {
+  function saveImages() {
     {
-      images.map((img: any, index:any) => {
-        axios.post('http://localhost:4000/images',{"author":img.author,"url":img.download_url,"tagged":false}).
-        then((response)=>console.log(response));
+      apiImages.map((img: any, index: any) => {
+        axios.post('http://localhost:3010/images', { "author": img.author, "url": img.download_url, "tagged": false }).
+          then((response) => console.log(response));
       })
     }
-    //  {
-//         images.map((img: any, index:any) => {
-// console.log(img)
-//         })
-//       }
-//     axios.post('http://localhost:4000/images',{img}).
-//     then((response)=>console.log(response));
 
 
   }
@@ -51,11 +43,9 @@ function Image() {
 
     getAPI().then((e: any) => {
       setAPI(e);
-      console.log(e,"eeeeeeee")
-      saveImages(e)
-      // axios.post('http://localhost:4000/images',{img}).
-      // then((response)=>console.log(response));
+  
     });
+    // saveImages();
 
     // saveImages(apiImages)
 
@@ -65,24 +55,19 @@ function Image() {
 
   return (
 
-      <div className='images'>
-        {
+    <div className='images'>
+      {
         apiImages.map((img: any, index) => {
-     
+
           return <Card key={index} author={img.author} height={img.height}
             width={img.width}
-            url={img.download_url} ></Card>
+            url={img.download_url} id={img.id} ></Card>
         })
       }
-       
-        
-   
 
-      </div>
+    </div>
 
   );
-
-
 
 }
 

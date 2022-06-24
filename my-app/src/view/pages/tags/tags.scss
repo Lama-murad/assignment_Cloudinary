@@ -1,33 +1,48 @@
 .tag {
     position: absolute;
     top: 0%;
-    width: 20vw;
-  
+
+
     font-size: 1rem;
 
+    .addbtn{
+        width: 5vw;
+        height: 5vh;
+        justify-content: center;
+    }
+
     .formAddTag {
-        margin-left: 1%;
+        margin-left: 5%;
         display: flex;
         flex-direction: column;
         flex: 1;
         padding: 2%;
 
+
     }
 
-    .table {
-        margin-left: 1%;
-        position: relative;
-        top: 30%;
-        border-style: solid;
+    .tags {
+        margin-left: 5%;
+ 
 
-
-
-        .table-striped {
-            justify-content: space-evenly;
-            border-color: black;
+        .info{
+            height: 5vh;
+            display: flex;
+            padding: 2%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            
+            .input{
+                width:8vw;
+            }
+            .btn{
+                width: 4vw;
+            }
+            p{
+            
+            }
         }
-
-
     }
 
 

@@ -19,7 +19,7 @@ const MenuProps = {
     style: {
       maxHeight: ITEM_HEIGHT * 3 + ITEM_PADDING_TOP,
       width: 150,
-   
+
     },
   },
 };
@@ -30,6 +30,7 @@ interface cardProp {
   width: number;
   height: number;
   url: string;
+  id: string;
 }
 
 function Card(prop: cardProp) {
@@ -39,7 +40,7 @@ function Card(prop: cardProp) {
   const [tagData, setTagData] = useState({ label: "", id: "", images: [] });
   const [tagImages, setTagImages] = useState<string[]>([]);
   const getData = () => {
-    axios.get('http://localhost:4000/tags').then(({ data }) => setTags(data));
+    axios.get('http://localhost:3010/tags').then(({ data }) => setTags(data));
 
     //   setData(data);
   }
@@ -60,23 +61,24 @@ function Card(prop: cardProp) {
 
   function handleChoseTag(img: any, e: any) {
     // e.preventDefault();
-    console.log(img, "imggg")
 
     {
       tagName.map((t: any, index) => {
         console.log(t, "tttttttttt")
 
         let arr: any[] = [];
-        axios.get(`http://localhost:4000/tags/${t}`).
+        axios.get(`http://localhost:3010/tags/${t}`).
           then((response) => {
             setTagImages([...tagImages, img.url])
             arr = [...tagImages, img.url]
             console.log(response.data.images, "hhhhhhhh", arr)
 
-            axios.patch(`http://localhost:4000/tags/${t}`, { "images": [...response.data.images, img.url] }).
+            axios.patch(`http://localhost:3010/tags/${t}`, { "images": [...response.data.images, img.url] }).
               then((response) => console.log(response));
-            alert("tag added successfully");
+
           });
+        alert("tag added successfully");
+
       })
     }
 
@@ -89,34 +91,35 @@ function Card(prop: cardProp) {
 
   return (
     <div className="MainCard">
-        <img className='imgMainCard' src={prop.url}></img>
-        <div className='imgMaintxt'>
-          <p className='formControl'>
-          <p> author:  {prop.author}</p>
-            <FormControl  sx={{ m: 1,height:50,width:100,top:0}} size="small" >
-              <InputLabel id="demo-multiple-checkbox-label">  <AiFillTag ></AiFillTag></InputLabel>
-              <Select
-                labelId="demo-multiple-checkbox-label"
-                id="demo-multiple-checkbox"
-                multiple
-                value={tagName}
-                onChange={handleChange}
-                input={<OutlinedInput label="Tag" />}
-                renderValue={(selected) => selected.join(', ')}
-                MenuProps={MenuProps}
-              >
-                {tags.map((t) => (
-                  <MenuItem key={t.label} value={t.id}>
-                    <Checkbox checked={tagName.indexOf(t.id) > -1} />
-                    <ListItemText primary={t.label} />
-                  </MenuItem>
-                ))}
-                <button onClick={(e) => handleChoseTag(prop, e)}>apply</button>
-              </Select>
+      <img className='imgMainCard' src={prop.url}></img>
+      <div className='txt'>
+        <p className='formControl'>
+          {/* <p> author:  {prop.author}</p> */}
+          <FormControl sx={{ m: 1, height: 50, width: 80, top: 0, fontSize: 'xx-small' }} size="small" >
+            <InputLabel id="demo-multiple-checkbox-label">  <AiFillTag ></AiFillTag></InputLabel>
+            <Select
+              size="small"
+              labelId="demo-multiple-checkbox-label"
+              id="demo-multiple-checkbox"
+              multiple
+              value={tagName}
+              onChange={handleChange}
+              input={<OutlinedInput label="Tag" />}
+              renderValue={(tagName) => tagName.join(', ')}
+              MenuProps={MenuProps}
+            >
+              {tags.map((t) => (
+                <MenuItem key={t.label} value={t.id}>
+                  <Checkbox size="small" checked={tagName.indexOf(t.id) > -1} />
+                  <ListItemText primary={t.label} sx={{ m: 1, height: 50, width: 110, top: 0, fontSize: 'xx-small' }} />
+                </MenuItem>
+              ))}
+              <button onClick={(e) => handleChoseTag(prop, e)}>apply</button>
+            </Select>
 
-            </FormControl>
-          </p>
-        </div>
+          </FormControl>
+        </p>
+      </div>
     </div>
 
   )

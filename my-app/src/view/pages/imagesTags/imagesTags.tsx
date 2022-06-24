@@ -9,7 +9,7 @@ function ImageTags() {
   const [data, setData] = useState([{ label: "", color: "", images: [] }]);
 
   const getData = () => {
-    axios.get('http://localhost:4000/tags').then(({ data }) => setData(data));
+    axios.get('http://localhost:3010/tags').then(({ data }) => setData(data));
     //   setData(data);
   }
 

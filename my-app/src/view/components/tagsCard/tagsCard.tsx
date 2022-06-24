@@ -34,15 +34,27 @@ function TagsCard(prop: cardProp) {
 
 
   const getData = () => {
-    axios.get('http://localhost:4000/tags').then(({ data }) => setTags(data));
-    axios.get('http://localhost:4000/tags').then(({ data }) => console.log(data));
-    axios.get('http://localhost:4000/taggedImages').then(({ data }) => setTagsImages(data))
+    axios.get('http://localhost:3010/tags').then(({ data }) => setTags(data));
+    // axios.get('http://localhost:3010/tags').then(({ data }) => console.log(data));
+    // axios.get('http://localhost:3010/taggedImages').then(({ data }) => setTagsImages(data))
 
     //   setData(data);
   }
 
-  const handleRemoveItem = (id: any, e: any) => {
+  const handleRemoveItem = (imageUrl: any, tag: any) => {
+    console.log(tag,"aaaa",imageUrl)
 
+      tags.filter( (t:any) => {
+          if(t.label === tag.label){
+            tag.images = tag.images.filter((img:any) => {
+                  return img != imageUrl; 
+              })
+              axios.patch(`http://localhost:3010/tags/${tag.id}`, {"images": tag.images}).then((response)=>{
+                alert("image removed successfully from the tag!");
+              })
+        
+          }
+      })
   }
 
 
@@ -51,21 +63,18 @@ function TagsCard(prop: cardProp) {
   }, [])
 
   return (
-    <div className="MainCard1">
-      <p style={{ backgroundColor: prop.tag.color }}>{prop.tag.label}</p>
-
-      <div className='imgMaintxt1'>
-        {/* {tags.map((t) => (
-              <img className='imgMainCard' src={prop.img.url}></img>
-          ))} */}
+    <div className="tagsCard">
+      <p className="tagName" style={{ backgroundColor: prop.tag.color }}>{prop.tag.label}</p>
 
         {prop.tag.images.length ? (
           // array exists and is not empty:
-          <p>
-            {prop.tag.images.map((t) => (
-              <><img className='imgMainCard1' src={t}></img>
-                <DeleteOutlinedIcon onClick={(e) => { handleRemoveItem(t, e); }} /></>
+          <p className='taggedImages'>
+          <p >
+            {prop.tag.images.map((i) => (
+              <><img className='image' src={i}></img>
+                <DeleteOutlinedIcon onClick={(e) => { handleRemoveItem(i, prop.tag); }} /></>
             ))}
+          </p>
           </p>
         ) : (
           <p></p>
@@ -73,7 +82,7 @@ function TagsCard(prop: cardProp) {
         }
 
 
-      </div>
+      {/* </div> */}
 
 
     </div>

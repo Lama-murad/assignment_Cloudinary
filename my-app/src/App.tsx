@@ -14,12 +14,17 @@ function App() {
 
   return (
     <div className="App">
+      <div className='firstComponent'>
         <Tags />
+      </div>
 
 
+      <div className='secComponent'>
         <Image />
 
         <ImageTags />
+      </div>
+
 
     </div>
   );
