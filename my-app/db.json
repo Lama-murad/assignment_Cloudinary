@@ -1,14 +1,6 @@
 {
   "tags": [
     {
-      "label": "vehicle",
-      "color": "#fc04ad",
-      "images": [
-        "https://picsum.photos/id/0/5616/3744"
-      ],
-      "id": 6
-    },
-    {
       "label": "work",
       "color": "#e26f7d",
       "images": [
@@ -29,7 +21,6 @@
       "label": "trip",
       "color": "#5fc293",
       "images": [
-        "https://picsum.photos/id/1011/5472/3648",
         "https://picsum.photos/id/1006/3000/2000"
       ],
       "id": 9
@@ -48,6 +39,14 @@
       "color": "#4034b3",
       "images": [],
       "id": 13
+    },
+    {
+      "label": "dark",
+      "color": "#c7d357",
+      "images": [
+        "https://picsum.photos/id/1004/5616/3744"
+      ],
+      "id": 14
     }
   ],
   "taggedImages": [],
