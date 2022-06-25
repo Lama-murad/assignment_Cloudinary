@@ -15,10 +15,13 @@ cd my-app
 #### Set up json server:
 npm install -g json-server
 
-npm run db (to run the server)
-
 #### To run the project
-npm install
+
+npm install @emotion/react
+
+npm install 
+
+npm run db (to run the server)
 
 npm start (runs the app in the development mode).
 
