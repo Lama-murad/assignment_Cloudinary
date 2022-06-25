@@ -17,7 +17,6 @@ npm install -g json-server
 
 #### To run the project
 
-npm install @emotion/react
 
 npm install 
 
