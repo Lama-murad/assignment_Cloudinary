@@ -1,6 +1,4 @@
 .MainCard {
-    // display: grid;
-    // flex-direction: row;
     position: relative;
     border: .0625rem solid #4164b1;
     text-align: left;
@@ -28,11 +26,10 @@
         height: 30%;
         position: absolute;
         bottom: 0px;
-        // position: relative;
-        // height: 50%;
-        p{
+
+        p {
             height: 20%;
-        font-size: 0.7rem;
+            font-size: 0.7rem;
         }
 
 

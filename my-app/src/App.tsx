@@ -17,8 +17,6 @@ function App() {
       <div className='firstComponent'>
         <Tags />
       </div>
-
-
       <div className='secComponent'>
         <Image />
 

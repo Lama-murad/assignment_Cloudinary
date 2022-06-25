@@ -5,12 +5,11 @@ import './imageTags.scss'
 
 
 function ImageTags() {
-  const [img, setImg] = useState("");
   const [data, setData] = useState([{ label: "", color: "", images: [] }]);
 
+  //getting the tags from the json db
   const getData = () => {
     axios.get('http://localhost:3010/tags').then(({ data }) => setData(data));
-    //   setData(data);
   }
 
 
@@ -18,8 +17,8 @@ function ImageTags() {
     const interval = setInterval(() => {
       getData()
     }, 3000);
-  
-  },[] )
+
+  }, [])
 
 
   return (
@@ -28,10 +27,8 @@ function ImageTags() {
       {data.map((t: any, index) => {
 
         return (
-          // <p style={{backgroundColor: t.color}}>{t.label}</p>
           <TagsCard key={index} tag={t}
 
-          //    prop.tag.img={t.images} 
           ></TagsCard>
         )
       })}

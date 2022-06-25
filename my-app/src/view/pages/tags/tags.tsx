@@ -13,20 +13,19 @@ import { TurnLeftTwoTone } from "@mui/icons-material";
 function Tags() {
     const [name, setName] = useState('');
     const [data, setData] = useState([{ label: "", color: "", images: [] }]);
-    const [filteredData,setFilteredData]=useState([{ label: "", color: "", images: [] }])
+    const [filteredData, setFilteredData] = useState([{ label: "", color: "", images: [] }])
     const [edit, setEdit] = useState(true);
     const [filter, setFilter] = useState(true);
-    const [id, setId] = useState(0);
 
     const getData = () => {
-        axios.get('http://localhost:3010/tags').then(({ data }) =>{setData(data)
-        setFilteredData(data)
-    });
-        //   setData(data);
-   
+        axios.get('http://localhost:3010/tags').then(({ data }) => {
+            setData(data)
+            setFilteredData(data)
+        });
+
     }
 
-
+    // remove the chosen tag  from the json db 
     const handleRemoveItem = (info: any, e: any) => {
         e.preventDefault();
         const label = e.target;
@@ -38,17 +37,17 @@ function Tags() {
                 console.log(res);
                 console.log(res.data);
                 alert("tag removed successfully");
-                // window.location.reload();
                 const tags = filteredData.filter(item => item.label !== info.label);
                 setFilteredData(tags);
             })
-        //  .then(({data})=>console.log(data));
     };
+
 
     function handleEdit() {
         setEdit(!edit);
     }
 
+    //edit a tag's name 
     const handleEditItem = (id: any, e: any) => {
         e.preventDefault();
         const label = e.target[0].value;
@@ -65,13 +64,7 @@ function Tags() {
 
     };
 
-
-    function handleChange(event: any) {
-        setName(event.target.value);
-        // track input field's state
-    }
-
-
+    // add a new tag to the json db 
     function handleAdd(ev: any) {
         ev.preventDefault();
         const form = ev.target;
@@ -81,28 +74,29 @@ function Tags() {
             axios.post('http://localhost:3010/tags', { 'label': form[0].value, 'color': "#" + randomColor, "images": [] }).
                 then((response) => {
                     console.log(response)
-                    // setData([...data, { 'label': form[0].value, 'color': "#" + randomColor, "images": [] }])
                     setFilteredData([...filteredData, { 'label': form[0].value, 'color': "#" + randomColor, "images": [] }])
                 }
                 );
-               
+
             alert("tag added successfully");
         }
         else {
             alert("no data!! try again");
         }
     }
-    function filterList(e:any) {
+
+    //filter the tags list by charcters 
+    function filterList(e: any) {
         setFilter(!filter)
         let updatedList = data;
-  
+
         updatedList = updatedList.filter(item => {
-     
-           return item.label.toLowerCase().search(e.target.value.toLowerCase()) !== -1
-          
+
+            return item.label.toLowerCase().search(e.target.value.toLowerCase()) !== -1
+
         })
         setFilteredData(updatedList);
-      }
+    }
 
     useEffect(() => {
         getData()
@@ -111,7 +105,7 @@ function Tags() {
     return (
         <div className="tag">
             <form className='formAddTag' onSubmit={handleAdd}>
-                <input type="text" name="label"  placeholder='add new tag' />
+                <input type="text" name="label" placeholder='add new tag' />
                 <Button className='addbtn' type="submit">Add</Button>
             </form>
             <div className="tags">
@@ -134,10 +128,8 @@ function Tags() {
 
                 {filteredData.map((info: any, index: number) => {
                     let tagId = info.id;
-                    // console.log(info.id,"tagidddd");
                     return (
                         <div key={info.id} className="info" style={{ backgroundColor: info.color }}>
-                            {/* && checkIfSame(tagId,id) */}
                             {edit ? (
                                 <><p>{info.label}  </p>
                                     <ButtonGroup className='grpbtn' variant="contained" aria-label="outlined small button group">
@@ -165,12 +157,3 @@ function Tags() {
 export default Tags;
 
 
-
-
-
-
-
-function checkIfSame(id1: any, id2: number) {
-    if (id1 === id2) return true;
-    else return false;
-}

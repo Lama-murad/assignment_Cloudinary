@@ -1,11 +1,9 @@
 .tag {
     position: absolute;
     top: 0%;
-
-
     font-size: 1rem;
 
-    .addbtn{
+    .addbtn {
         width: 5vw;
         height: 5vh;
         justify-content: center;
@@ -23,9 +21,9 @@
 
     .tags {
         margin-left: 5%;
- 
 
-        .info{
+
+        .info {
             height: 5vh;
             display: flex;
             padding: 2%;
@@ -34,18 +32,16 @@
             justify-content: space-between;
             padding: 1%;
             margin: 1%;
-            
-            .input{
-                width:7vw;
+
+            .input {
+                width: 7vw;
             }
-            .btn{
+
+            .btn {
                 width: 2vw;
                 height: 2vw;
                 background-color: transparent;
                 border-color: transparent;
-            }
-            p{
-            
             }
         }
     }

@@ -37,17 +37,15 @@ function Card(prop: cardProp) {
   const [tags, setTags] = useState([{ label: "", id: "" }]);
   //the chosen tags for the images
   const [tagName, settagName] = React.useState<string[]>([]);
-  const [tagData, setTagData] = useState({ label: "", id: "", images: [] });
   const [tagImages, setTagImages] = useState<string[]>([]);
 
+  //get the tags from the json db
   const getData = () => {
     axios.get('http://localhost:3010/tags').then(({ data }) => setTags(data));
 
-    //   setData(data);
   }
 
-  // const [tag, setTag] = React.useState<string[]>([]);
-
+  // handle the changes made in the dropdown
   const handleChange = (event: SelectChangeEvent<typeof tagName>) => {
     const {
       target: { value },
@@ -60,37 +58,29 @@ function Card(prop: cardProp) {
     console.log({ tagName });
   };
 
+  // adding the images in the chosen tag's images array .
   function handleChoseTag(img: any, e: any) {
     e.preventDefault();
 
     {
       tagName.map((t: any, index) => {
-        console.log(t, "tttttttttt")
-
         let arr: any[] = [];
+        //getting the chosen tags
         axios.get(`http://localhost:3010/tags/${t}`).
           then((response) => {
-            console.log(response.data.images,"response")
             setTagImages([...tagImages, img.url])
             arr = [response.data.images]
-            console.log("arr",arr[0])
-
-            
-            if(!arr[0].includes(img.url)){
-            axios.patch(`http://localhost:3010/tags/${t}`, { "images": [...response.data.images, img.url] }).
-              then((response) => console.log(response));
-              alert("image added successfully to "+response.data.label  );
+            //checking if the image already assigned to the tag
+            if (!arr[0].includes(img.url)) {
+              axios.patch(`http://localhost:3010/tags/${t}`, { "images": [...response.data.images, img.url] }).
+                then((response) => console.log(response));
+              alert("image added successfully to " + response.data.label);
             }
-            else{
-              alert("image already exists in "+ response.data.label+ "!");
+            else {
+              alert("image already exists in " + response.data.label + "!");
             }
-
-
 
           });
-     
-        // window.location.reload();
-
 
       })
     }
@@ -99,18 +89,17 @@ function Card(prop: cardProp) {
   }
 
   useEffect(() => {
-    // getData()
     const interval = setInterval(() => {
       getData()
     }, 3000);
   }, [])
 
+  // display the image and the dropbox in a card
   return (
     <div className="MainCard">
       <img className='imgMainCard' src={prop.url}></img>
       <div className='txt'>
         <p className='formControl'>
-          {/* <p> author:  {prop.author}</p> */}
           <FormControl sx={{ m: 1, height: 50, width: 80, top: 0, fontSize: 'xx-small' }} size="small" >
             <InputLabel id="demo-multiple-checkbox-label">  <AiFillTag ></AiFillTag></InputLabel>
             <Select
@@ -127,7 +116,7 @@ function Card(prop: cardProp) {
               {tags.map((t) => (
                 <MenuItem key={t.label} value={t.id}>
                   <Checkbox size="small" checked={tagName.indexOf(t.id) > -1} />
-                  <ListItemText primary={t.label} sx={{ m: 1, height: 50,fontSize: 'xxx-small' }} />
+                  <ListItemText primary={t.label} sx={{ m: 1, height: 50, fontSize: 'xxx-small' }} />
                 </MenuItem>
               ))}
               <button onClick={(e) => handleChoseTag(prop, e)}>apply</button>
