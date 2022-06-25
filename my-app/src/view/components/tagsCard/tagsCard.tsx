@@ -59,6 +59,7 @@ function TagsCard(prop: cardProp) {
 
 
   useEffect(() => {
+    
     getData()
   }, [])
 

@@ -3,14 +3,17 @@
     {
       "label": "vehicle",
       "color": "#fc04ad",
-      "images": [],
+      "images": [
+        "https://picsum.photos/id/0/5616/3744"
+      ],
       "id": 6
     },
     {
       "label": "work",
       "color": "#e26f7d",
       "images": [
-        "https://picsum.photos/id/0/5616/3744"
+        "https://picsum.photos/id/1006/3000/2000",
+        "https://picsum.photos/id/1/5616/3744"
       ],
       "id": 7
     },
@@ -26,36 +29,100 @@
       "label": "trip",
       "color": "#5fc293",
       "images": [
-        "https://picsum.photos/id/1011/5472/3648"
+        "https://picsum.photos/id/1011/5472/3648",
+        "https://picsum.photos/id/1006/3000/2000"
       ],
       "id": 9
-    },
-    {
-      "label": "animal",
-      "color": "#cd02a1",
-      "images": [
-        "https://picsum.photos/id/1003/1181/1772"
-      ],
-      "id": 10
-    },
-    {
-      "label": "sea",
-      "color": "#577754",
-      "images": [
-        "https://picsum.photos/id/1011/5472/3648"
-      ],
-      "id": 11
     },
     {
       "label": "nature",
       "color": "#fe1015",
       "images": [
-        "https://picsum.photos/id/10/2500/1667",
-        "https://picsum.photos/id/1006/3000/2000"
+        "https://picsum.photos/id/1002/4312/2868",
+        "https://picsum.photos/id/10/2500/1667"
       ],
       "id": 12
+    },
+    {
+      "label": "animal",
+      "color": "#4034b3",
+      "images": [],
+      "id": 13
     }
   ],
   "taggedImages": [],
-  "images": []
+  "images": [
+    {
+      "author": "Alejandro Escamilla",
+      "url": "https://picsum.photos/id/0/5616/3744",
+      "tagged": false,
+      "id": 1
+    },
+    {
+      "author": "Alejandro Escamilla",
+      "url": "https://picsum.photos/id/1/5616/3744",
+      "tagged": false,
+      "id": 2
+    },
+    {
+      "author": "Paul Jarvis",
+      "url": "https://picsum.photos/id/10/2500/1667",
+      "tagged": false,
+      "id": 3
+    },
+    {
+      "author": "Tina Rataj",
+      "url": "https://picsum.photos/id/100/2500/1656",
+      "tagged": false,
+      "id": 4
+    },
+    {
+      "author": "Lukas Budimaier",
+      "url": "https://picsum.photos/id/1000/5626/3635",
+      "tagged": false,
+      "id": 5
+    },
+    {
+      "author": "Danielle MacInnes",
+      "url": "https://picsum.photos/id/1001/5616/3744",
+      "tagged": false,
+      "id": 6
+    },
+    {
+      "author": "NASA",
+      "url": "https://picsum.photos/id/1002/4312/2868",
+      "tagged": false,
+      "id": 7
+    },
+    {
+      "author": "E+N Photographies",
+      "url": "https://picsum.photos/id/1003/1181/1772",
+      "tagged": false,
+      "id": 8
+    },
+    {
+      "author": "Greg Rakozy",
+      "url": "https://picsum.photos/id/1004/5616/3744",
+      "tagged": false,
+      "id": 9
+    },
+    {
+      "author": "Matthew Wiebe",
+      "url": "https://picsum.photos/id/1005/5760/3840",
+      "tagged": false,
+      "id": 10
+    },
+    {
+      "author": "Vladimir Kudinov",
+      "url": "https://picsum.photos/id/1006/3000/2000",
+      "tagged": false,
+      "id": 11
+    },
+    {
+      "author": "Benjamin Combs",
+      "url": "https://picsum.photos/id/1008/5616/3744",
+      "tagged": false,
+      "id": 12
+    }
+  ]
 }

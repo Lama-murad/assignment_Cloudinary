@@ -15,8 +15,11 @@ function ImageTags() {
 
 
   useEffect(() => {
-    getData()
-  }, [])
+    const interval = setInterval(() => {
+      getData()
+    }, 3000);
+  
+  },[] )
 
 
   return (

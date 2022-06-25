@@ -26,26 +26,36 @@ function Image() {
           reject(err);
         });
     });
+    
   }
 
-  function saveImages() {
-    {
-      apiImages.map((img: any, index: any) => {
-        axios.post('http://localhost:3010/images', { "author": img.author, "url": img.download_url, "tagged": false }).
+  function saveImages(e:any) {
+    
+      // apiImages.map((img: any, index: any) => {
+      //   axios.post('http://localhost:3010/images', { "author": img.author, "url": img.download_url, "tagged": false }).
+      //     then((response) => console.log(response));
+      // })
+
+      e.map(async (img: any, index: any) => {
+        const found = await axios.get(`http://localhost:3010/images?url=${img.download_url}`);
+        if(found.data.length == 0){
+          axios.post('http://localhost:3010/images', { "author": img.author, "url": img.download_url, "tagged": false }).
           then((response) => console.log(response));
+        }
       })
-    }
-
-
+    
   }
+
+ 
 
   useEffect(() => {
 
     getAPI().then((e: any) => {
       setAPI(e);
+      saveImages(e);
   
     });
-    // saveImages();
+
 
     // saveImages(apiImages)
 

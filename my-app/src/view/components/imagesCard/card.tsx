@@ -61,7 +61,7 @@ function Card(prop: cardProp) {
   };
 
   function handleChoseTag(img: any, e: any) {
-    // e.preventDefault();
+    e.preventDefault();
 
     {
       tagName.map((t: any, index) => {
@@ -70,15 +70,26 @@ function Card(prop: cardProp) {
         let arr: any[] = [];
         axios.get(`http://localhost:3010/tags/${t}`).
           then((response) => {
+            console.log(response.data.images,"response")
             setTagImages([...tagImages, img.url])
-            arr = [...tagImages, img.url]
-            console.log(response.data.images, "hhhhhhhh", arr)
+            arr = [response.data.images]
+            console.log("arr",arr[0])
+
+            
+            if(!arr[0].includes(img.url)){
             axios.patch(`http://localhost:3010/tags/${t}`, { "images": [...response.data.images, img.url] }).
               then((response) => console.log(response));
+              alert("image added successfully to "+response.data.label  );
+            }
+            else{
+              alert("image already exists in "+ response.data.label+ "!");
+            }
+
+
 
           });
-        alert("tag added successfully");
-        window.location.reload();
+     
+        // window.location.reload();
 
 
       })
@@ -88,7 +99,10 @@ function Card(prop: cardProp) {
   }
 
   useEffect(() => {
-    getData()
+    // getData()
+    const interval = setInterval(() => {
+      getData()
+    }, 3000);
   }, [])
 
   return (
@@ -113,7 +127,7 @@ function Card(prop: cardProp) {
               {tags.map((t) => (
                 <MenuItem key={t.label} value={t.id}>
                   <Checkbox size="small" checked={tagName.indexOf(t.id) > -1} />
-                  <ListItemText primary={t.label} sx={{ m: 1, height: 50, width: 110, top: 0, fontSize: 'xx-small' }} />
+                  <ListItemText primary={t.label} sx={{ m: 1, height: 50,fontSize: 'xxx-small' }} />
                 </MenuItem>
               ))}
               <button onClick={(e) => handleChoseTag(prop, e)}>apply</button>
